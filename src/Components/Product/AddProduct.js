@@ -1,42 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { v4 as uuid } from "uuid";
+import { addProduct } from "../../redux/actions";
+import ProductGrid from "./ProductGrid";
 
 const AddProduct = () => {
+    const dispatch = useDispatch();
+
+    const [product, setProduct] = useState();
+    const submitProduct = (event) => {
+        setProduct({
+            ...product,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    const submit = (event) => {
+        event.preventDefault();
+        const uniqeId = { id: uuid() };
+        const addProductInfo = Object.assign(uniqeId, product);
+        dispatch(addProduct(addProductInfo));
+    };
     return (
         <div id="product">
             <main className="py-16">
                 <div className="productWrapper">
-                    <div className="productContainer" id="lws-productContainer">
-                        <div className="lws-productCard">
-                            <img
-                                className="lws-productImage"
-                                src="https://i.dummyjson.com/data/products/40/thumbnail.jpg"
-                                alt="product"
-                            />
-                            <div className="p-4 space-y-2">
-                                <h4 className="lws-productName">
-                                    Women Winter Clothes
-                                </h4>
-                                <p className="lws-productCategory">Tops</p>
-                                <div className="flex items-center justify-between pb-2">
-                                    <p className="productPrice">
-                                        BDT{" "}
-                                        <span className="lws-price">100</span>
-                                    </p>
-                                    <p className="productQuantity">
-                                        QTY{" "}
-                                        <span className="lws-quantity">30</span>
-                                    </p>
-                                </div>
-                                <button className="lws-btnAddToCart">
-                                    Add To Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <ProductGrid></ProductGrid>
                     <div>
                         <div className="formContainer">
                             <h4 className="formTitle">Add New Product</h4>
                             <form
+                                onSubmit={submit}
                                 className="space-y-4 text-[#534F4F]"
                                 id="lws-addProductForm"
                             >
@@ -45,6 +39,8 @@ const AddProduct = () => {
                                         Product Name
                                     </label>
                                     <input
+                                        onChange={submitProduct}
+                                        name="name"
                                         className="addProductInput"
                                         id="lws-inputName"
                                         type="text"
@@ -56,6 +52,8 @@ const AddProduct = () => {
                                         Category
                                     </label>
                                     <input
+                                        onChange={submitProduct}
+                                        name="catagory"
                                         className="addProductInput"
                                         id="lws-inputCategory"
                                         type="text"
@@ -67,6 +65,8 @@ const AddProduct = () => {
                                         Image Url
                                     </label>
                                     <input
+                                        onChange={submitProduct}
+                                        name="url"
                                         className="addProductInput"
                                         id="lws-inputImage"
                                         type="text"
@@ -79,6 +79,8 @@ const AddProduct = () => {
                                             Price
                                         </label>
                                         <input
+                                            onChange={submitProduct}
+                                            name="price"
                                             className="addProductInput"
                                             type="number"
                                             id="lws-inputPrice"
@@ -90,6 +92,8 @@ const AddProduct = () => {
                                             Quantity
                                         </label>
                                         <input
+                                            onChange={submitProduct}
+                                            name="quantity"
                                             className="addProductInput"
                                             type="number"
                                             id="lws-inputQuantity"
