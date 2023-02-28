@@ -21,6 +21,7 @@ const AddProduct = () => {
         const quantity = { cartQuantity: 0 };
         const addProductInfo = Object.assign(uniqeId, quantity, product);
         dispatch(addProduct(addProductInfo));
+        event.target.reset();
     };
     return (
         <div id="product">

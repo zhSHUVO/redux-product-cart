@@ -1,7 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import logo from "../images/logo.png";
 
 const Nav = () => {
+    const products = useSelector((state) => state);
+    const totalCartProduts = products.reduce(
+        (total, state) => state.cartQuantity + total,
+        0
+    );
+
     const toggleCart = (event) => {
         event.preventDefault();
         const product = document.getElementById("product");
@@ -41,7 +48,7 @@ const Nav = () => {
                             id="lws-cart"
                         >
                             <i className="text-xl fa-sharp fa-solid fa-bag-shopping"></i>
-                            <span id="lws-totalCart">0</span>
+                            <span id="lws-totalCart">{totalCartProduts}</span>
                         </a>
                     </div>
                 </div>

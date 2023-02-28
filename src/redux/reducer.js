@@ -1,4 +1,9 @@
-import { ADDPRODUCT, ADDTOCART, REMOVEFROMCART } from "./actionTypes";
+import {
+    ADDPRODUCT,
+    ADDTOCART,
+    DELETECARTPRODUCT,
+    REMOVEFROMCART,
+} from "./actionTypes";
 
 const initialState = [];
 
@@ -27,6 +32,17 @@ const shoppingReducer = (state = initialState, action) => {
                     ...product,
                     cartQuantity: product.cartQuantity - 1,
                     stock: product.stock + 1,
+                };
+            });
+        case DELETECARTPRODUCT:
+            return state.map((product) => {
+                if (product.id !== action.payload) {
+                    return product;
+                }
+                return {
+                    ...product,
+                    cartQuantity: 0,
+                    stock: product.stock + product.cartQuantity,
                 };
             });
 

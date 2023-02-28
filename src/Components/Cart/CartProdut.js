@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "../../redux/actions";
+import {
+    addToCart,
+    deleteCartProduct,
+    removeFromCart,
+} from "../../redux/actions";
 
 const CartProdut = ({ cartProduts }) => {
     const dispatch = useDispatch();
@@ -34,6 +38,7 @@ const CartProdut = ({ cartProduts }) => {
                             <div className="flex items-center space-x-4">
                                 <button
                                     className="lws-incrementQuantity"
+                                    disabled={!cartProdut.stock}
                                     onClick={() =>
                                         dispatch(addToCart(cartProdut.id))
                                     }
@@ -46,7 +51,7 @@ const CartProdut = ({ cartProduts }) => {
                                 <button
                                     className="lws-decrementQuantity"
                                     onClick={() =>
-                                        dispatch(removeFromCart(cartProdut.id)) 
+                                        dispatch(removeFromCart(cartProdut.id))
                                     }
                                 >
                                     <i className="text-lg fa-solid fa-minus"></i>
@@ -60,7 +65,12 @@ const CartProdut = ({ cartProduts }) => {
                             </p>
                         </div>
                         <div className="flex items-center justify-center col-span-2 mt-4 md:justify-end md:mt-0">
-                            <button className="lws-removeFromCart">
+                            <button
+                                className="lws-removeFromCart"
+                                onClick={() =>
+                                    dispatch(deleteCartProduct(cartProdut.id))
+                                }
+                            >
                                 <i className="text-lg text-red-400 fa-solid fa-trash"></i>
                             </button>
                         </div>

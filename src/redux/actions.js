@@ -1,9 +1,8 @@
 import {
     ADDPRODUCT,
     ADDTOCART,
-    DECREASECARTQUANTITY,
     DELETECARTPRODUCT,
-    INCREASECARTQUANTITY,
+    REMOVEFROMCART,
 } from "./actionTypes";
 
 export const addProduct = (product) => {
@@ -22,20 +21,7 @@ export const addToCart = (id) => {
 
 export const removeFromCart = (id) => {
     return {
-        type: ADDTOCART,
-        payload: id,
-    };
-};
-
-export const increaseCartQuantity = (id) => {
-    return {
-        type: INCREASECARTQUANTITY,
-        payload: id,
-    };
-};
-export const decreaseCartQuantity = (id) => {
-    return {
-        type: DECREASECARTQUANTITY,
+        type: REMOVEFROMCART,
         payload: id,
     };
 };

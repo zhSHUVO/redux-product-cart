@@ -1,11 +1,9 @@
 // add to stock
 export const ADDPRODUCT = "stock/addProduct";
 
-// add to cart
+// add/remove to/from cart
 export const ADDTOCART = "cart/addToCart";
 export const REMOVEFROMCART = "cart/removeFromCart";
 
-// manage cart
-export const INCREASECARTQUANTITY = "cart/increaseCartQuantity";
-export const DECREASECARTQUANTITY = "cart/decreaseCartQuantity";
+// delete cart
 export const DELETECARTPRODUCT = "cart/deleteCartProduct";

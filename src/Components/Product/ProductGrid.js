@@ -18,7 +18,9 @@ const ProductGrid = () => {
                         />
                         <div className="p-4 space-y-2">
                             <h4 className="lws-productName">{product.name}</h4>
-                            <p className="lws-productCategory">Tops</p>
+                            <p className="lws-productCategory">
+                                {product.catagory}
+                            </p>
                             <div className="flex items-center justify-between pb-2">
                                 <p className="productPrice">
                                     BDT{" "}
@@ -36,6 +38,7 @@ const ProductGrid = () => {
                             <button
                                 onClick={() => dispatch(addToCart(product.id))}
                                 className="lws-btnAddToCart"
+                                disabled={!product.stock}
                             >
                                 Add To Cart
                             </button>
