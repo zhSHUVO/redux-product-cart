@@ -20,6 +20,13 @@ export const addToCart = (id) => {
     };
 };
 
+export const removeFromCart = (id) => {
+    return {
+        type: ADDTOCART,
+        payload: id,
+    };
+};
+
 export const increaseCartQuantity = (id) => {
     return {
         type: INCREASECARTQUANTITY,

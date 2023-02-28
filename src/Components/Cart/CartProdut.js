@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../../redux/actions";
 
 const CartProdut = ({ cartProduts }) => {
+    const dispatch = useDispatch();
     return (
         <div>
             <div className="space-y-6">
@@ -29,13 +32,23 @@ const CartProdut = ({ cartProduts }) => {
                         </div>
                         <div className="flex items-center justify-center col-span-4 mt-4 space-x-8 md:mt-0">
                             <div className="flex items-center space-x-4">
-                                <button className="lws-incrementQuantity">
+                                <button
+                                    className="lws-incrementQuantity"
+                                    onClick={() =>
+                                        dispatch(addToCart(cartProdut.id))
+                                    }
+                                >
                                     <i className="text-lg fa-solid fa-plus"></i>
                                 </button>
                                 <span className="lws-cartQuantity">
                                     {cartProdut.cartQuantity}
                                 </span>
-                                <button className="lws-decrementQuantity">
+                                <button
+                                    className="lws-decrementQuantity"
+                                    onClick={() =>
+                                        dispatch(removeFromCart(cartProdut.id)) 
+                                    }
+                                >
                                     <i className="text-lg fa-solid fa-minus"></i>
                                 </button>
                             </div>

@@ -3,6 +3,7 @@ export const ADDPRODUCT = "stock/addProduct";
 
 // add to cart
 export const ADDTOCART = "cart/addToCart";
+export const REMOVEFROMCART = "cart/removeFromCart";
 
 // manage cart
 export const INCREASECARTQUANTITY = "cart/increaseCartQuantity";
