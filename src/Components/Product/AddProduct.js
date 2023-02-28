@@ -18,7 +18,8 @@ const AddProduct = () => {
     const submit = (event) => {
         event.preventDefault();
         const uniqeId = { id: uuid() };
-        const addProductInfo = Object.assign(uniqeId, product);
+        const quantity = { cartQuantity: 0 };
+        const addProductInfo = Object.assign(uniqeId, quantity, product);
         dispatch(addProduct(addProductInfo));
     };
     return (
@@ -93,7 +94,7 @@ const AddProduct = () => {
                                         </label>
                                         <input
                                             onChange={submitProduct}
-                                            name="quantity"
+                                            name="stock"
                                             className="addProductInput"
                                             type="number"
                                             id="lws-inputQuantity"

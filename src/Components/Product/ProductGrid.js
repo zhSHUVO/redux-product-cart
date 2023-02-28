@@ -1,7 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../redux/actions";
 
 const ProductGrid = () => {
+    const dispatch = useDispatch();
     const products = useSelector((state) => state);
 
     return (
@@ -27,11 +29,14 @@ const ProductGrid = () => {
                                 <p className="productQuantity">
                                     QTY{" "}
                                     <span className="lws-quantity">
-                                        {product.quantity}
+                                        {product.stock}
                                     </span>
                                 </p>
                             </div>
-                            <button className="lws-btnAddToCart">
+                            <button
+                                onClick={() => dispatch(addToCart(product.id))}
+                                className="lws-btnAddToCart"
+                            >
                                 Add To Cart
                             </button>
                         </div>
